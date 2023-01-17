@@ -42,13 +42,13 @@ for (let i of buttonList) {
 		let button = document.createElement("td");
 		button.innerText = j || '';
 		row.appendChild(button);
-		button.setAttribute("onclick",`keypress("${j}")`);
+		button.setAttribute("onclick",`keyPress("${j}")`);
 	}
 	let tbody = document.createElement("tbody");
 	tbody.appendChild(row);
 	buttons.appendChild(tbody);
 }
-buttons.innerHTML+='<td colspan="3"><textarea onclick="function" placeholder="Type to your Roku..."></textarea></td>';
+buttons.innerHTML+=`<td colspan="3"><textarea onkeydown="keyPress('Lit_'+event.key)" placeholder="Type to your Roku..."></textarea></td>`;
 document.body.appendChild(buttons);
 var IP = localStorage.getItem('ip') || askIP();
 function askIP() {
@@ -56,10 +56,12 @@ function askIP() {
 	localStorage.setItem('ip',IP);
 	return IP
 }
-function keypress(key) {
-	alert('http://'+IP+':8060/keypress/'+key);
+function acceptKey(e) {
+	keyPress(e.key);
 }
-
+function keyPress(key) {
+	fetch("http://"+IP+":8060/keypress/"+key, {method: 'POST'})
+}
 		</script>
 	</body>
 </html>
