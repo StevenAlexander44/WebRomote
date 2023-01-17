@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<style>
+table{
+	table-layout: fixed;
+}
+table, td, textarea{
+	height: 100%;
+	width: 100%;
+	empty-cells: hide
+}
+td{
+	text-align: center;
+	font: 48px sans-serif;
+	border: 1px solid;
+	border-radius: 12px;
+}
+textarea{
+	background-color: transparent;
+	border-color: transparent;
+	outline: none;
+	resize: none;
+	font: 18px sans-serif;
+}
+		</style>
+	</head>
+	<body>
+		<script>
+const buttonList = [
+	['Back','Power','Home'],
+	[,'Up'],
+	['Left','Select','Right'],
+	[,'Down'],
+	['InstantReplay','Sleep?','Info'],
+	['Rev','Play','Fwd'],
+	['VolumeMute','VolumeDown','VolumeUp']
+];
+var buttons = document.createElement("table");
+for (let i of buttonList) {
+	buttons.innerHTML+=('<tr><td>'+i.join('</td><td>')+'</td></tr>');
+}
+buttons.innerHTML+='<td colspan="3"><textarea placeholder="Type here..."></textarea></td>';
+document.body.appendChild(buttons);
+		</script>
+	</body>
+</html>
