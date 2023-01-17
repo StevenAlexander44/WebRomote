@@ -3,11 +3,11 @@
 		<style>
 table{
 	table-layout: fixed;
+	empty-cells: hide
 }
 table, td, textarea{
 	height: 100%;
 	width: 100%;
-	empty-cells: hide
 }
 td{
 	text-align: center;
@@ -16,11 +16,11 @@ td{
 	border-radius: 12px;
 }
 textarea{
+	font: 18px sans-serif;
 	background-color: transparent;
 	border-color: transparent;
 	outline: none;
 	resize: none;
-	font: 18px sans-serif;
 }
 		</style>
 	</head>
@@ -37,10 +37,29 @@ const buttonList = [
 ];
 var buttons = document.createElement("table");
 for (let i of buttonList) {
-	buttons.innerHTML+=('<tr><td>'+i.join('</td><td>')+'</td></tr>');
+	let row = document.createElement("tr");
+	for (let j of i) {
+		let button = document.createElement("td");
+		button.innerText = j || '';
+		row.appendChild(button);
+		button.setAttribute("onclick",`keypress("${j}")`);
+	}
+	let tbody = document.createElement("tbody");
+	tbody.appendChild(row);
+	buttons.appendChild(tbody);
 }
-buttons.innerHTML+='<td colspan="3"><textarea placeholder="Type here..."></textarea></td>';
+buttons.innerHTML+='<td colspan="3"><textarea onclick="function" placeholder="Type to your Roku..."></textarea></td>';
 document.body.appendChild(buttons);
+var IP = localStorage.getItem('ip') || askIP();
+function askIP() {
+	let IP = prompt("What is your Roku's IP?","192.168.1.");
+	localStorage.setItem('ip',IP);
+	return IP
+}
+function keypress(key) {
+	alert('http://'+IP+':8060/keypress/'+key);
+}
+
 		</script>
 	</body>
 </html>
