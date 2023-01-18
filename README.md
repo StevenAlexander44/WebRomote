@@ -1,12 +1,17 @@
 # WebRomote
-## This is a Roku remote control made for Chromium-based desktop browsers
-With more compatibility to come... probably.
+## A Roku remote control made for Chromium desktop browsers
+With more device compatibility to come.
+
+# Features
+* Most of the features of a regular Roku remote
+* Much faster typing on most Roku Channels
+* Big, readable buttons
 
 # Usage
 
 ### Prerequisites
 * You must know the IP Address of your Roku device (Roku Settings > Network > About > IP, Usually in the form of "192.168.X.XXX")
-* You must be on the same network as your Roku device
+* Your controller device must be on the same network as your Roku device
 
 ## Option 1. Download the HTML file (Works offline)
 #### One-time setup
@@ -31,12 +36,12 @@ c. Open the [remote](https://stevenalexander44.github.io/WebRomote/romote.html)
 d. Enter the IP Address of your Roku, and Enjoy!
 
 #### Why do I need to allow insecure connections?
-Roku (by default) uses HTTP for their [API system](https://developer.roku.com/docs/developer-program/debugging/external-control-api.md), which is okay for most local network connections. By contrast, Github Pages uses the secure HTTP**S** protocol, necessary for the wider internet, and most browsers don't allow for insecure HTTP requests from a HTTP**S** website.
+Roku (by default) uses HTTP for their [API system](https://developer.roku.com/docs/developer-program/debugging/external-control-api.md), which is okay for most local network connections. By contrast, Github Pages uses the secure HTTP**S** protocol, necessary for the wider internet, and most browsers don't allow for insecure HTTP requests from a HTTP**S** website by default.
 
 # Issues
 
 ## My Roku IP has changed, or I entered the wrong IP and now can't connect to my Roku device.
-Type `;` into the keyboard (bottom) textbox
+Type `;` into the keyboard (bottom) textbox, and reload the page
 
 ## Why doesn't this work on my mobile device, or in Firefox?
 I need to get better at HTML.
