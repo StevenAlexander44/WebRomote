@@ -48,31 +48,37 @@ for (let i of buttonList) {
 	tbody.appendChild(row);
 	buttons.appendChild(tbody);
 }
-buttons.innerHTML+=`<td colspan="3"><textarea oninput="handleKey(event)" placeholder="Type to your Roku..."></textarea></td>`;
+buttons.innerHTML+=`<td colspan="3"><textarea oninput="handleKey(event)" placeholder="Type to your Roku...\nPress ; to reset IP"></textarea></td>`;
 document.body.appendChild(buttons);
 var IP = localStorage.getItem('ip') || askIP();
 function askIP() {
-	let IP = prompt("What is your Roku's IP?","192.168.1.");
+	let IP = prompt("What is your Roku device's IP?","192.168.1.");
 	localStorage.setItem('ip',IP);
 	return IP
 }
+function resetIP() {
+	alert("Deleting IP: "+IP+"\nReload the page to set a new IP");
+	localStorage.clear();
+}
 function handleKey(e) {
 	var key = e.data;
+	if (key == ';' && localStorage.length != 0) {
+		resetIP();
+	}
 	if (key == null) {
 		switch (e.inputType){
 			case 'deleteContentBackward':
-				key = "Backspace";
-				break;
+				keyPress("Backspace");
+				return;
 			case 'insertLineBreak':
-				key = "Enter";
-		}
-		if (key != null) {
-			keyPress(key);
-			return
+				keyPress("Enter");
+				return;
+			default:
+				return;
 		}
 	}
 	if (key != null) {
-		keyPress('Lit_'+key)
+		keyPress(encodeURI('Lit_'+key))
 	}
 }
 function keyPress(key) {
