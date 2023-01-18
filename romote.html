@@ -48,7 +48,7 @@ for (let i of buttonList) {
 	tbody.appendChild(row);
 	buttons.appendChild(tbody);
 }
-buttons.innerHTML+=`<td colspan="3"><textarea onkeydown="keyPress('Lit_'+event.key)" placeholder="Type to your Roku..."></textarea></td>`;
+buttons.innerHTML+=`<td colspan="3"><textarea oninput="handleKey(event)" placeholder="Type to your Roku..."></textarea></td>`;
 document.body.appendChild(buttons);
 var IP = localStorage.getItem('ip') || askIP();
 function askIP() {
@@ -56,8 +56,24 @@ function askIP() {
 	localStorage.setItem('ip',IP);
 	return IP
 }
-function acceptKey(e) {
-	keyPress(e.key);
+function handleKey(e) {
+	var key = e.data;
+	if (key == null) {
+		switch (e.inputType){
+			case 'deleteContentBackward':
+				key = "Backspace";
+				break;
+			case 'insertLineBreak':
+				key = "Enter";
+		}
+		if (key != null) {
+			keyPress(key);
+			return
+		}
+	}
+	if (key != null) {
+		keyPress('Lit_'+key)
+	}
 }
 function keyPress(key) {
 	fetch("http://"+IP+":8060/keypress/"+key, {method: 'POST'})
