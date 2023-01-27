@@ -40,8 +40,5 @@ Roku (by default) uses HTTP for their [API system](https://developer.roku.com/do
 
 # Issues
 
-## My Roku IP has changed, or I entered the wrong IP and now can't connect to my Roku device.
-Type `;` into the keyboard (bottom) textbox, and reload the page
-
 ## Why doesn't this work on my mobile device, or in Firefox?
-I need to get better at HTML.
+I need to get better at CSS.
