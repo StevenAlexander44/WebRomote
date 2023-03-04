@@ -42,6 +42,3 @@ Roku (by default) uses HTTP for their [API system](https://developer.roku.com/do
 
 ## Why doesn't this work on my mobile device, or in Firefox?
 I need to get better at CSS.
-
-## How do I view it in dark mode?
-Use [darkreader](https://chrome.google.com/webstore/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh), or wait for me to get better at CSS.
