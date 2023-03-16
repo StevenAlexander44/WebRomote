@@ -40,5 +40,5 @@ Roku (by default) uses HTTP for their [API system](https://developer.roku.com/do
 
 # Issues
 
-## Why doesn't this work on my mobile device, or in Firefox?
-I need to get better at CSS.
+## Why doesn't this work on my mobile device?
+I need to get better at JS. In the meantime, use either [RoMote](https://f-droid.org/en/packages/wseemann.media.romote) or [the official Roku app](https://www.roku.com/mobile-app).
