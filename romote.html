@@ -27,7 +27,7 @@ document.onkeydown = function(e) {
 	handleKey(e.key)
 }
 function setIP() {
-	let IP = prompt("What is your Roku device's IP?\n(Use ; to reset the IP.)","192.168.1.");
+	let IP = prompt("What is your Roku device's IP?\n(Use the 'Delete' key to reset the IP.)","192.168.1.");
 	localStorage.setItem('ip',IP);
 	return IP
 }
