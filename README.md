@@ -6,13 +6,13 @@ With more device compatibility to come.
 * Much faster typing on most Roku Channels
 * Big, readable buttons
 * Use your keyboard to control the Roku device, including:
+    * Arrow keys for movement
     * "Home" key for home
     * Enter to select
     * Escape to go back
-    * Tab for instant replay
-    * "?" for info
+    * CapsLock for instant replay
+    * "/" or "?" for info
     * PageUp/Down and "End" for volume
-    * Arrow keys for movement
 
 # How to use
 
