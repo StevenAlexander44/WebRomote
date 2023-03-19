@@ -5,6 +5,14 @@ With more device compatibility to come.
 * Most of the features of a regular Roku remote
 * Much faster typing on most Roku Channels
 * Big, readable buttons
+* Use your keyboard to control the Roku device, including:
+    * "Home" key for home
+    * Enter to select
+    * Escape to go back
+    * Tab for instant replay
+    * "?" for info
+    * PageUp/Down and "End" for volume
+    * Arrow keys for movement
 
 # How to use
 
@@ -38,6 +46,10 @@ d. Enter the IP Address of your Roku, and Enjoy!
 Roku (by default) uses HTTP for their [API system](https://developer.roku.com/docs/developer-program/debugging/external-control-api.md), which is okay for most local network connections. By contrast, Github Pages uses the secure HTTP**S** protocol, necessary for the wider internet, and most browsers don't allow for insecure HTTP requests from a HTTP**S** website by default.
 
 # Issues
+
+## Can I use another Roku device with the same browser?
+Yes, but for now you will have to remember each IP address that you want to use.
+To reset the IP, press the delete key on your keyboard, or clear cookies for the webpage.
 
 ## Why doesn't this work on my mobile device?
 I'm not sure if it's possible to allow secure content on mobile devices. In the meantime either try to follow [Option 1](option-1-download-the-html-file-works-offline), or use an app:
