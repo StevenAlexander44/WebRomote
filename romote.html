@@ -1,93 +1,117 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta name="viewport" content="user-scalable=no"/>
-		<title>Romote</title>
 		<style>
-body, table, textarea{
+html, body, table{
 	background-color: black;
 	color: white;
-	font: 24px monospace;
 	margin: 0;
 	height: 100%;
 	width: 100%;
+	user-select: none;
 }
 table{
 	table-layout: fixed;
-	empty-cells: hide;
 }
-td{
-	border: 2px solid;
+th{
+	border: 4px solid;
 	border-radius: 12px;
-	font: 48px sans-serif;
-	text-align: center;
-}
-textarea{
-	background-color: transparent;
-	border-color: transparent;
-	outline: none;
-	resize: none;
+	font: 48px monospace;
 }
 		</style>
-	</head>
-	<body>
 		<script>
-const buttonList = [
-	['Back','Power','Home'],
-	[,'Up'],
-	['Left','Select','Right'],
-	['InstantReplay','Down','Info'],
-	['Rev','Play','Fwd'],
-	['VolumeMute','VolumeDown','VolumeUp']
-];
-var buttons = document.createElement("table");
-for (let i of buttonList) {
-	let row = document.createElement("tr");
-	for (let j of i) {
-		let button = document.createElement("td");
-		button.innerText = j || '';
-		row.appendChild(button);
-		button.setAttribute("onclick",`keyPress("${j}")`);
-	}
-	let tbody = document.createElement("tbody");
-	tbody.appendChild(row);
-	buttons.appendChild(tbody);
+var IP = localStorage.getItem('ip') || setIP();
+document.title = IP;
+document.onkeydown = function(e) {
+	handleKey(e.key)
 }
-buttons.innerHTML+=`<td colspan="3"><textarea oninput="handleKey(event)" placeholder="Type to your Roku...\nPress ; to reset IP"></textarea></td>`;
-document.body.appendChild(buttons);
-var IP = localStorage.getItem('ip') || askIP();
-function askIP() {
-	let IP = prompt("What is your Roku device's IP?","192.168.1.");
+function setIP() {
+	let IP = prompt("What is your Roku device's IP?\n(Use ; to reset the IP.)","192.168.1.");
 	localStorage.setItem('ip',IP);
 	return IP
 }
 function resetIP() {
-	alert("Deleting IP: "+IP+"\nReload the page to set a new IP");
 	localStorage.clear();
+	alert("Removed IP: "+IP+"\nReload the page to set a new IP")
 }
-function handleKey(e) {
-	var key = e.data;
-	if (key == ';' && localStorage.length != 0) {
-		resetIP();
+function handleKey(key) {
+	console.log("Got:"+key);
+	if (key == 'Delete' && localStorage.length != 0) {
+		resetIP()
 	}
-	if (key == null) {
-		switch (e.inputType){
-			case 'deleteContentBackward':
-				keyPress("Backspace");
-				return;
-			case 'insertLineBreak':
-				keyPress("Enter");
-				return;
-			default:
-				return;
-		}
+	const keyMap = new Map([
+		["Home",	"Home"],
+		["REWIND",	"Rev"],
+		["FORWARD",	"Fwd"],
+		["PLAY",	"Play"],
+		["Enter",	"Select"],
+		["Escape",	"Back"],
+		["Tab",		"InstantReplay"],
+		["/",		"Info"],
+		["?",		"Info"],
+		["Backspace",	"Backspace"],
+		["PageDown",	"VolumeDown"],
+		["End",		"VolumeMute"],
+		["PageUp",	"VolumeUp"]
+	]);
+	if (keyMap.has(key)) {
+		key = keyMap.get(key);
+	} else if (key.length == 1) {
+		key = 'Lit_'+encodeURI(key)
+	} else if (key.includes("Arrow")) {
+		key = key.replace("Arrow","");
+	} else {
+		return
 	}
-	if (key != null) {
-		keyPress(encodeURI('Lit_'+key))
-	}
+	p(key);
 }
-function keyPress(key) {
+function p(key) {
+	console.log("Typed:"+key);
 	fetch("http://"+IP+":8060/keypress/"+key, {method: 'POST'})
 }
 		</script>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td colspan=2></td>
+				<th colspan=2 onclick='p("PowerOff")'>Power</th>
+				<td colspan=2></td>
+			</tr>
+			<tr>
+				<th colspan=3 onclick='p("Back")'>Back</th>
+				<th colspan=3 onclick='p("Home")'>Home</th>
+			</tr>
+			<tr>
+				<td colspan=2></td>
+				<th colspan=2 onclick='p("Up")'>Up</th>
+				<td colspan=2></td>
+			</tr>
+			<tr>
+				<th colspan=2 onclick='p("Left")'>Left</th>
+				<th colspan=2 onclick='p("Select")'>OK</th>
+				<th colspan=2 onclick='p("Right")'>Right</th>
+			</tr>
+			<tr>
+				<td colspan=2></td>
+				<th colspan=2 onclick='p("Down")'>Down</th>
+				<td colspan=2></td>
+			</tr>
+			<tr>
+				<th colspan=3 onclick='p("InstantReplay")'>Replay</th>
+				<th colspan=3 onclick='p("Info")'>Info</th>
+			</tr>
+			<tr>
+				<th colspan=2 onclick='p("Rew")'>Rewind</th>
+				<th colspan=2 onclick='p("Play")'>Play/Pause</th>
+				<th colspan=2 onclick='p("Fwd")'>FF</th>
+			</tr>
+			<tr>
+				<th colspan=2 onclick='p("VolumeMute")'>Mute</th>
+				<th colspan=2 onclick='p("VolumeDown")'>VolDown</th>
+				<th colspan=2 onclick='p("VolumeUp")'>VolUp</th>
+			</tr>
+		</table>
 	</body>
 </html>
