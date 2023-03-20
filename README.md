@@ -54,3 +54,6 @@ In the meantime [Option 1](option-1-download-the-html-file-works-offline) might 
 
 ## Make a database system for different Roku devices (IP addresses)
 In the meantime, to reset the IP, press the Delete key on your keyboard, or clear cookies for the webpage.
+
+## Make buttons and keyboard shortcuts easily configurable.
+Currently one would have to change the source code to be able to do this. One might want to change their layout with drag and drop.
