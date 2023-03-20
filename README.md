@@ -45,13 +45,12 @@ d. Enter the IP Address of your Roku, and Enjoy!
 ### Why do I need to allow insecure connections?
 Roku (by default) uses HTTP for their [API system](https://developer.roku.com/docs/developer-program/debugging/external-control-api.md), which is okay for most local network connections. By contrast, Github Pages uses the secure HTTP**S** protocol, necessary for the wider internet, and most browsers don't allow for insecure HTTP requests from a HTTP**S** website by default.
 
-# Issues
+# TODO
 
-## Can I use another Roku device with the same browser?
-Yes, but for now you will have to remember each IP address that you want to use.
-To reset the IP, press the delete key on your keyboard, or clear cookies for the webpage.
-
-## Why doesn't this work on my mobile device?
-I'm not sure if it's possible to allow secure content on mobile devices. In the meantime either try to follow [Option 1](option-1-download-the-html-file-works-offline), or use an app:
+## Make it work on mobile browsers
+In the meantime [Option 1](option-1-download-the-html-file-works-offline) might work, or use an app:
 * This project's inspiration: [RoMote](https://github.com/wseemann/RoMote)
 * [The official Roku app](https://www.roku.com/mobile-app).
+
+## Make a database system for different Roku devices (IP addresses)
+In the meantime, to reset the IP, press the Delete key on your keyboard, or clear cookies for the webpage.
