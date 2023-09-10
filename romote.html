@@ -41,19 +41,16 @@ function handleKey(key) {
 		resetIP()
 	}
 	const keyMap = new Map([
-		["Home",	"Home"],
-		["REWIND",	"Rev"],
-		["FORWARD",	"Fwd"],
-		["PLAY",	"Play"],
-		["Enter",	"Select"],
 		["Escape",	"Back"],
-		["CapsLock",	"InstantReplay"],
-		["/",		"Info"],
+		["Home",	"Home"],
+		["Enter",	"Select"],
+		["/",		"InstantReplay"],
 		["?",		"Info"],
-		["Backspace",	"Backspace"],
-		["PageDown",	"VolumeDown"],
+		["CapsLock",	"Play"],
 		["End",		"VolumeMute"],
-		["PageUp",	"VolumeUp"]
+		["PageDown",	"VolumeDown"],
+		["PageUp",	"VolumeUp"],
+		["Backspace",	"Backspace"]
 	]);
 	if (keyMap.has(key)) {
 		key = keyMap.get(key);
